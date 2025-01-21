@@ -221,51 +221,6 @@ Example Authentication Error Response:
  
 
 ## Captains Endpoint
-
-### Register Captain
-
-**Endpoint:** `/captains/register`
-
-**Method:** `POST`
-
-**Description:** This endpoint allows a new captain to register by providing their first name, last name, email, password, and vehicle details.
-
-**Request Body:**
-
-The request body must be a JSON object containing the following fields:
-
-- `fullName`: An object containing:
-  - `firstName` (string, required): The captain's first name. Must be at least 3 characters long.
-  - `lastName` (string, optional): The captain's last name. Must be at least 3 characters long if provided.
-- `email` (string, required): The captain's email address. Must be a valid email format.
-- `password` (string, required): The captain's password. Must be at least 5 characters long.
-- `vehicle`: An object containing:
-  - `color` (string, required): The vehicle's color. Must be at least 3 characters long.
-  - `plate` (string, required): The vehicle's plate number. Must be at least 3 characters long.
-  - `capacity` (integer, required): The vehicle's capacity. Must be at least 1.
-  - `vehicleType` (string, required): The type of vehicle. Must be one of 'car', 'motorcycle', or 'auto'.
-
-**Example Request:**
-
-```json
-{
-  "fullName": {
-    "firstName": "Jane",
-    "lastName": "Doe"
-  },
-  "email": "jane.doe@example.com",
-  "password": "password123",
-  "vehicle": {
-    "color": "Red",
-    "plate": "ABC123",
-    "capacity": 4,
-    "vehicleType": "car"
-  }
-}
-```
-
- 
-
  
 ## Captains Endpoint
 
