@@ -221,8 +221,7 @@ Example Authentication Error Response:
  
 
 ## Captains Endpoint
- 
-## Captains Endpoint
+  
 
 ### Register Captain
 
@@ -340,3 +339,160 @@ If the request body does not meet the validation criteria, the response will inc
   ]
 }
 ``` 
+ 
+
+
+### Login Captain
+
+**Endpoint:** `/captains/login`
+
+**Method:** `POST`
+
+**Description:** This endpoint allows an existing captain to log in by providing their email and password.
+
+**Request Body:**
+
+The request body must be a JSON object containing the following fields:
+
+```json
+{
+  "email": "string, required, format: email",
+  "password": "string, required, minLength: 5"
+}
+```
+
+**Example Request:**
+
+```json
+{
+  "email": "jane.doe@example.com",
+  "password": "password123"
+}
+```
+
+**Response:**
+
+- `200 OK`: If the captain is successfully logged in, the response will include a JSON object containing the authentication token and captain details.
+- `400 Bad Request`: If there are validation errors, the response will include a JSON object containing the errors.
+- `401 Unauthorized`: If the email or password is incorrect, the response will include an error message.
+
+**Example Response:**
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "captain": {
+    "_id": "60d0fe4f5311236168a109cb",
+    "fullName": {
+      "firstName": "Jane",
+      "lastName": "Doe"
+    },
+    "email": "jane.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+**Validation Errors:**
+
+If the request body does not meet the validation criteria, the response will include an array of error messages.
+
+**Example Validation Error Response:**
+
+```json
+{
+  "errors": [
+    {
+      "msg": "Invalid Email",
+      "param": "email",
+      "location": "body"
+    },
+    {
+      "msg": "Password must be at least 5 characters long",
+      "param": "password",
+      "location": "body"
+    }
+  ]
+}
+```
+
+**Authentication Errors:**
+
+If the email or password is incorrect, the response will include an error message.
+
+**Example Authentication Error Response:**
+
+```json
+{
+  "message": "Invalid email or password"
+}
+```
+
+### Get Captain Profile
+
+**Endpoint:** `/captains/profile`
+
+**Method:** `GET`
+
+**Description:** This endpoint allows an authenticated captain to retrieve their profile information.
+
+**Authentication:** Requires a valid JWT token in either:
+- Authorization header as `Bearer <token>`
+- Cookie named 'token'
+
+**Response:**
+
+- `200 OK`: Returns the captain's profile information
+- `401 Unauthorized`: If no token is provided or token is invalid
+
+**Example Response:**
+
+```json
+{
+  "captain": {
+    "_id": "60d0fe4f5311236168a109cb",
+    "fullName": {
+      "firstName": "Jane",
+      "lastName": "Doe"
+    },
+    "email": "jane.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+### Logout Captain
+
+**Endpoint:** `/captains/logout`
+
+**Method:** `GET`
+
+**Description:** This endpoint allows an authenticated captain to log out by invalidating their current authentication token.
+
+**Authentication:** Requires a valid JWT token in either:
+- Authorization header as `Bearer <token>` 
+- Cookie named 'token'
+
+**Response:**
+
+- `200 OK`: If the captain is successfully logged out
+- `401 Unauthorized`: If no token is provided or token is invalid
+
+**Example Response:**
+
+```json
+{
+  "message": "Logout successful"
+}
+```
+```
