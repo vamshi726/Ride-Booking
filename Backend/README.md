@@ -161,3 +161,57 @@ Example Authentication Error Response:
   "message": "Invalid email or password"
 }
 ```
+
+### Get User Profile
+
+**Endpoint:** `/users/profile`
+
+**Method:** `GET`
+
+**Description:** This endpoint allows an authenticated user to retrieve their profile information.
+
+**Authentication:** Requires a valid JWT token in either:
+- Authorization header as `Bearer <token>`
+- Cookie named 'token'
+
+**Response:**
+
+- `200 OK`: Returns the user's profile information
+- `401 Unauthorized`: If no token is provided or token is invalid
+
+**Example Response:**
+
+```json
+{
+  "_id": "60d0fe4f5311236168a109ca",
+  "fullName": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "email": "john.doe@example.com"
+}
+```
+
+### Logout User
+
+**Endpoint:** `/users/logout`
+
+**Method:** `GET`
+
+**Description:** This endpoint allows an authenticated user to log out by invalidating their current authentication token.
+
+**Authentication:** Requires a valid JWT token in either:
+- Authorization header as `Bearer <token>` 
+- Cookie named 'token'
+
+**Response:**
+
+- `200 OK`: If the user is successfully logged out
+- `401 Unauthorized`: If no token is provided or token is invalid
+
+**Example Response:**
+
+```json
+{
+  "message": "Logged out successfully"
+}
