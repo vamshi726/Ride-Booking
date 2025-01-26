@@ -21,9 +21,9 @@ module.exports.authUser = async (req,res,next)=>{
 
     try{
         const decoded = jwt.verify(token,process.env.JWT_SECRET)
-        const captain = await userModel.findById(decoded._id)
+        const user = await userModel.findById(decoded._id)
 
-        req.captain=captain;
+        req.user=user;
 
         return next()
     }catch(err){

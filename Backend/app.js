@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.get('/',(req,res)=>{
     res.send("hello / endpoint , user")
-})
+}) 
 
 app.use('/users',userRoutes) 
 app.use('/captains',captainRoutes) 
