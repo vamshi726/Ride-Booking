@@ -15,9 +15,11 @@ const CaptainProtectWrapper = ({children}) => {
   const [isLoading,setIsLoading]= useState(true)
  
   
-  useEffect(()=>{if(!token){
+  useEffect(()=>{
+    
+    if(!token){
     navigate('/login')
-  }},[token])
+  }
 
   axios.get(`${import.meta.env.VITE_BASE_URL}/captains/profile `,{
     headers:{
@@ -34,6 +36,11 @@ const CaptainProtectWrapper = ({children}) => {
     navigate('/captain-login')
     
   })
+
+ 
+},[token])
+
+  
 
 
   if(isLoading){
