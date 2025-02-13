@@ -80,7 +80,7 @@ const CaptainLogin = () => {
     </div>
         <div>
             <Link
-            to='/login '
+            to='/user-login '
              className='bg-[#5a9be6] flex items-center justify-center text-white font-semibold mb-5 rounded px-4 py-2 w-full text-lg placeholder:text-base'
        
             >Sign in as User</Link>
